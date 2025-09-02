@@ -4,7 +4,8 @@
   "description": "Serverless contact form function for DigitalOcean",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "node server.js"
   },
   "dependencies": {
     "nodemailer": "^6.9.7",

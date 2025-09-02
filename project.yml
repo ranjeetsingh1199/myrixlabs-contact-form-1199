@@ -4,6 +4,7 @@ packages:
       - name: contactForm
         runtime: nodejs:default
         web: true
+        source_dir: functions
         parameters:
           EMAIL_HOST: '{{EMAIL_HOST}}'
           EMAIL_PORT: '{{EMAIL_PORT}}'
