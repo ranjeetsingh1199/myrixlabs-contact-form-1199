@@ -1,15 +1,12 @@
 name: myrixlabs-contact-form
 services:
-  - name: web
+  - name: contact-form-function
     github:
       repo: ranjeetsingh1199/myrixlabs-contact-form-1199
       branch: main
-      deploy_on_push: true
     environment_slug: node-js
-    build_command: npm install && npm run build
-    run_command: npm start
-    http_port: 3000
-    instance_size_slug: basic-xxs
-    instance_count: 1
+    build_command: npm install
+    run_command: node serverless/contact-form.js
     routes:
       - path: /
+        type: function
