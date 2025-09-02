@@ -3,12 +3,8 @@
     "version": "1.0.0",
     "description": "Serverless contact form function for DigitalOcean",
     "main": "functions/contactForm.js",
-    "scripts": {
-        "start": "node functions/contactForm.js",
-        "dev": "node functions/contactForm.js"
-    },
     "dependencies": {
-        "express": "^4.18.2"
+        "nodemailer": "^6.9.7"
     },
     "engines": {
         "node": ">=18.0.0"

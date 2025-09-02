@@ -1,9 +1,9 @@
 name: myrixlabs-contact-form
 services:
-  - name: web
+  - name: contact-form-function
     github:
       repo: ranjeetsingh1199/myrixlabs-contact-form-1199
       branch: main
     environment_slug: node-js
     build_command: npm install
-    run_command: npm start
+    run_command: node functions/contactForm.js
