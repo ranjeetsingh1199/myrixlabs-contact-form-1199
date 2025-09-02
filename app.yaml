@@ -1,0 +1,10 @@
+name: myrixlabs-contact-form
+services:
+  - name: web
+    github:
+      repo: ranjeetsingh1199/myrixlabs-contact-form-1199
+      branch: main
+    environment_slug: node-js
+    build_command: npm install
+    run_command: npm start
+    http_port: 3000
