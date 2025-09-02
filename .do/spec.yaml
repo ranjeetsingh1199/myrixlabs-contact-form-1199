@@ -1,0 +1,12 @@
+name: myrixlabs-contact-form
+services:
+  - name: web
+    github:
+      repo: ranjeetsingh1199/myrixlabs-contact-form-1199
+      branch: main
+      deploy_on_push: true
+    run_command: "npm start"
+    build_command: "npm install && npm run build"
+    http_port: 3000
+    instance_count: 1
+    instance_size_slug: basic-xxs
