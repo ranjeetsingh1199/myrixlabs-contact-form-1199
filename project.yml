@@ -1,0 +1,17 @@
+packages:
+  - name: contact-form
+    environment:
+      EMAIL_HOST: "${EMAIL_HOST}"
+      EMAIL_PORT: "${EMAIL_PORT}"
+      EMAIL_USER: "${EMAIL_USER}"
+      EMAIL_PASS: "${EMAIL_PASS}"
+      EMAIL_TO: "${EMAIL_TO}"
+    functions:
+      - name: contact-form
+        runtime: 'nodejs:default'
+        main: 'functions/contactForm.js'
+        web: true
+        limits:
+          timeout: 30000
+          memory: 256
+          logs: 1024
