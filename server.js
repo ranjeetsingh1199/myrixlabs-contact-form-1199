@@ -9,9 +9,29 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Debug environment variables
+app.get('/debug-env', (req, res) => {
+  const envVars = {
+    EMAIL_HOST: process.env.EMAIL_HOST || 'NOT SET',
+    EMAIL_PORT: process.env.EMAIL_PORT || 'NOT SET',
+    EMAIL_USER: process.env.EMAIL_USER || 'NOT SET',
+    EMAIL_PASS: process.env.EMAIL_PASS ? 'SET (hidden)' : 'NOT SET',
+    EMAIL_TO: process.env.EMAIL_TO || 'NOT SET'
+  };
+  res.json(envVars);
+});
+
 // Contact form endpoint
 app.post('/contact', async (req, res) => {
   try {
+    // Debug: Log environment variables
+    console.log('Environment Variables Check:');
+    console.log('EMAIL_HOST:', process.env.EMAIL_HOST);
+    console.log('EMAIL_PORT:', process.env.EMAIL_PORT);
+    console.log('EMAIL_USER:', process.env.EMAIL_USER);
+    console.log('EMAIL_PASS:', process.env.EMAIL_PASS ? 'SET' : 'NOT SET');
+    console.log('EMAIL_TO:', process.env.EMAIL_TO);
+
     const { firstName, lastName, email, message } = req.body;
 
     if (!firstName || !lastName || !email || !message) {
@@ -26,6 +46,21 @@ app.post('/contact', async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "Invalid email address",
+      });
+    }
+
+    // Check if environment variables are set
+    if (!process.env.EMAIL_HOST || !process.env.EMAIL_PORT || !process.env.EMAIL_USER || !process.env.EMAIL_PASS || !process.env.EMAIL_TO) {
+      return res.status(500).json({
+        success: false,
+        message: "Email configuration missing. Please check environment variables.",
+        missing: {
+          EMAIL_HOST: !process.env.EMAIL_HOST,
+          EMAIL_PORT: !process.env.EMAIL_PORT,
+          EMAIL_USER: !process.env.EMAIL_USER,
+          EMAIL_PASS: !process.env.EMAIL_PASS,
+          EMAIL_TO: !process.env.EMAIL_TO
+        }
       });
     }
 
@@ -81,7 +116,8 @@ app.get('/', (req, res) => {
   res.json({ 
     message: 'MyrixLabs Contact Form API is running!',
     endpoints: {
-      contact: 'POST /contact'
+      contact: 'POST /contact',
+      debug: 'GET /debug-env'
     }
   });
 });
