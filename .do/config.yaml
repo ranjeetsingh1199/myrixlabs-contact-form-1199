@@ -7,4 +7,3 @@ services:
     environment_slug: node-js
     build_command: npm install
     run_command: npm start
-    http_port: 3000
