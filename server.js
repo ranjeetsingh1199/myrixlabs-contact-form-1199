@@ -1,6 +1,6 @@
 const express = require('express');
-const nodemailer = require('nodemailer');
 const cors = require('cors');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -30,7 +30,7 @@ app.post('/contact', async (req, res) => {
     }
 
     // Brevo SMTP transporter
-    const transporter = nodemailer.createTransport({
+    const transporter = nodemailer.createTransporter({
       host: process.env.EMAIL_HOST,
       port: process.env.EMAIL_PORT,
       secure: false,
@@ -53,7 +53,7 @@ Timestamp: ${new Date().toLocaleString()}
     `.trim();
 
     const info = await transporter.sendMail({
-      from: `"${fullName}" <${email}>`, // verified sender
+      from: `"${fullName}" <${email}>`,
       to: process.env.EMAIL_TO,
       replyTo: email,
       subject: `Contact Form: New Message from ${fullName}`,
@@ -86,7 +86,6 @@ app.get('/', (req, res) => {
   });
 });
 
-// Start server
 app.listen(PORT, () => {
-  console.log(`Contact form server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

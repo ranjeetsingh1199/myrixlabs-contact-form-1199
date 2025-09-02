@@ -1,0 +1,13 @@
+[
+  {
+    "apihost": "https://faas-nyc1-2ef2e6cc.doserverless.co",
+    "namespace": "fn-eefe4e53-e888-4b92-b6c3-26591098d1d1",
+    "packageVersions": {
+      "myrixlabs-contact-form": {
+        "version": "0.0.1",
+        "digest": "18912507112ab54fa2526ec6d2d79fb3cf06ced4aee11b444bf11a6aac95968a"
+      }
+    },
+    "actionVersions": {}
+  }
+]

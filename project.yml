@@ -1,17 +1,12 @@
 packages:
-  - name: contact-form
-    environment:
-      EMAIL_HOST: "smtp-relay.brevo.com"
-      EMAIL_PORT: "587"
-      EMAIL_USER: "your_brevo_username"
-      EMAIL_PASS: "your_brevo_api_key"
-      EMAIL_TO: "recipient@example.com"
+  - name: myrixlabs-contact-form
     functions:
-      - name: contact-form
-        runtime: 'nodejs:default'
-        main: 'contactForm.js'
+      - name: contactForm
+        runtime: nodejs:default
         web: true
-        limits:
-          timeout: 30000
-          memory: 256
-          logs: 1024
+        parameters:
+          EMAIL_HOST: '{{EMAIL_HOST}}'
+          EMAIL_PORT: '{{EMAIL_PORT}}'
+          EMAIL_USER: '{{EMAIL_USER}}'
+          EMAIL_PASS: '{{EMAIL_PASS}}'
+          EMAIL_TO: '{{EMAIL_TO}}'

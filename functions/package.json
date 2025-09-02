@@ -1,0 +1,12 @@
+{
+  "name": "myrixlabs-contact-form-functions",
+  "version": "1.0.0",
+  "description": "Serverless contact form functions",
+  "main": "contactForm.js",
+  "dependencies": {
+    "nodemailer": "^6.9.7"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
