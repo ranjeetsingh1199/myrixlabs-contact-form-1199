@@ -29,7 +29,7 @@ app.post('/contact', async (req, res) => {
       });
     }
 
-    // Brevo SMTP transporter
+    // Brevo SMTP transporter - Updated for deployment
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: process.env.EMAIL_PORT,
