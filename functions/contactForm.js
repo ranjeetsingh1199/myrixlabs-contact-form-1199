@@ -71,7 +71,7 @@ Timestamp: ${new Date().toLocaleString()}
     `.trim();
 
     const info = await transporter.sendMail({
-      from: `"${fullName}" <${email}>`, // verified sender
+      from: `"${fullName}" <${email}>`,
       to: process.env.EMAIL_TO,
       replyTo: email,
       subject: `Contact Form: New Message from ${fullName}`,
