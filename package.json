@@ -2,11 +2,17 @@
     "name": "myrixlabs-contact-form-serverless",
     "version": "1.0.0",
     "description": "Serverless contact form function for DigitalOcean",
-    "main": "contact-form.js",
+    "main": "functions/contactForm.js",
+    "scripts": {
+        "start": "node functions/contactForm.js",
+        "dev": "node functions/contactForm.js"
+    },
     "dependencies": {
-      "nodemailer": "^6.9.7"
+        "nodemailer": "^6.9.7",
+        "express": "^4.18.2",
+        "cors": "^2.8.5"
     },
     "engines": {
-      "node": ">=18.0.0"
+        "node": ">=18.0.0"
     }
-  }
+}
