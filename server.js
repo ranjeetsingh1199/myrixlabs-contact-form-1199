@@ -73,9 +73,8 @@ app.post('/contact', async (req, res) => {
       });
     }
 
-    // Check if environment variables are set
+    
     if (!process.env.EMAIL_HOST || !process.env.EMAIL_PORT || !process.env.EMAIL_USER || !process.env.EMAIL_PASS || !process.env.EMAIL_TO) {
-      console.log('❌ Environment variables missing');
       failedEmails++;
       return res.status(500).json({
         success: false,
@@ -103,7 +102,6 @@ app.post('/contact', async (req, res) => {
         pass: process.env.EMAIL_PASS,
       },
       tls: { rejectUnauthorized: false },
-      // Disable pooling to ensure fresh connection each time
       pool: false,
       maxConnections: 1,
       maxMessages: 1
