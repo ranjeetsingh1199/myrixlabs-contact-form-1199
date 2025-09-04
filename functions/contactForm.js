@@ -71,7 +71,7 @@ Timestamp: ${new Date().toLocaleString()}
     `.trim();
 
     const info = await transporter.sendMail({
-      from: `"${fullName}" <${email}>`,
+      from: `"MyrixLabs Contact Form" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_TO,
       replyTo: email,
       subject: `Contact Form: New Message from ${fullName}`,
