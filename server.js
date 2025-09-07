@@ -1,6 +1,6 @@
-const express = require("express");
-const cors = require("cors");
-const nodemailer = require("nodemailer");
+const express = require('express');
+const cors = require('cors');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,14 +10,14 @@ app.use(cors());
 app.use(express.json());
 
 // Contact form endpoint
-app.post("/contact", async (req, res) => {
+app.post('/contact', async (req, res) => {
   try {
     const { firstName, lastName, email, message } = req.body;
 
     if (!firstName || !lastName || !email || !message) {
       return res.status(400).json({
         success: false,
-        message: "Missing required fields",
+        message: 'Missing required fields',
       });
     }
 
@@ -25,7 +25,7 @@ app.post("/contact", async (req, res) => {
     if (!emailRegex.test(email)) {
       return res.status(400).json({
         success: false,
-        message: "Invalid email address",
+        message: 'Invalid email address',
       });
     }
 
@@ -40,7 +40,7 @@ app.post("/contact", async (req, res) => {
       return res.status(500).json({
         success: false,
         message:
-          "Email configuration missing. Please check environment variables.",
+          'Email configuration missing. Please check environment variables.',
       });
     }
 
@@ -78,41 +78,43 @@ Timestamp: ${new Date().toLocaleString()}
       replyTo: email,
       subject: `Contact Form: New Message from ${fullName}`,
       text: emailContent,
-      headers: { "X-Mailer": "MyrixLabs Contact Form" },
+      headers: { 'X-Mailer': 'MyrixLabs Contact Form' },
     });
     transporter.close();
 
     res.json({
       success: true,
-      message: "Message sent!",
+      message: 'Message sent!',
       messageId: info.messageId,
     });
   } catch (error) {
     try {
-      if (transporter) {
+      // eslint-disable-next-line no-undef
+      if (typeof transporter !== 'undefined' && transporter) {
+        // eslint-disable-next-line no-undef
         transporter.close();
       }
     } catch (closeError) {
       // Ignore close errors
     }
-    console.error("Email sending error:", error.message);
+    console.error('Email sending error:', error.message);
     res.status(500).json({
       success: false,
-      message: "Failed to send email. Please try again later.",
+      message: 'Failed to send email. Please try again later.',
       error:
-        process.env.NODE_ENV === "development"
+        process.env.NODE_ENV === 'development'
           ? error.message
-          : "Internal server error",
+          : 'Internal server error',
     });
   }
 });
 
 // Health check endpoint
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
   res.json({
-    message: "MyrixLabs Contact Form API is running!",
+    message: 'MyrixLabs Contact Form API is running!',
     endpoints: {
-      contact: "POST /contact",
+      contact: 'POST /contact',
     },
   });
 });

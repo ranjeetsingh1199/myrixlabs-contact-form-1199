@@ -1,22 +1,22 @@
-const nodemailer = require("nodemailer");
+const nodemailer = require('nodemailer');
 
 exports.handler = async (event, context) => {
   const headers = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Content-Type": "application/json",
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Content-Type': 'application/json',
   };
 
-  if (event.httpMethod === "OPTIONS") {
-    return { statusCode: 200, headers, body: "" };
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers, body: '' };
   }
 
-  if (event.httpMethod !== "POST") {
+  if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
       headers,
-      body: JSON.stringify({ success: false, message: "Method not allowed" }),
+      body: JSON.stringify({ success: false, message: 'Method not allowed' }),
     };
   }
 
@@ -30,7 +30,7 @@ exports.handler = async (event, context) => {
         headers,
         body: JSON.stringify({
           success: false,
-          message: "Missing required fields",
+          message: 'Missing required fields',
         }),
       };
     }
@@ -42,7 +42,7 @@ exports.handler = async (event, context) => {
         headers,
         body: JSON.stringify({
           success: false,
-          message: "Invalid email address",
+          message: 'Invalid email address',
         }),
       };
     }
@@ -76,7 +76,7 @@ Timestamp: ${new Date().toLocaleString()}
       replyTo: email,
       subject: `Contact Form: New Message from ${fullName}`,
       text: emailContent,
-      headers: { "X-Mailer": "MyrixLabs Contact Form" },
+      headers: { 'X-Mailer': 'MyrixLabs Contact Form' },
     });
 
     return {
@@ -84,18 +84,18 @@ Timestamp: ${new Date().toLocaleString()}
       headers,
       body: JSON.stringify({
         success: true,
-        message: "Message sent!",
+        message: 'Message sent!',
         messageId: info.messageId,
       }),
     };
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error('Error sending email:', error);
     return {
       statusCode: 500,
       headers,
       body: JSON.stringify({
         success: false,
-        message: "Failed to send email.",
+        message: 'Failed to send email.',
         error: error.message,
       }),
     };
